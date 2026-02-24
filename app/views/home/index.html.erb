@@ -1,0 +1,56 @@
+<div class="scene">
+  <div class="header">
+    <h1>Ruby Railroad</h1>
+    <p>An animated journey through Rails</p>
+  </div>
+
+  <div class="track"></div>
+
+  <div class="train">
+    <div class="car blue" data-description="Separates data, logic, and presentation">
+      <i class="icon fas fa-cubes"></i>
+      <span class="label">MVC</span>
+    </div>
+    <div class="car purple" data-description="Object-relational mapping for databases">
+      <i class="icon fas fa-database"></i>
+      <span class="label">ActiveRecord</span>
+    </div>
+    <div class="car teal" data-description="Maps URLs to controller actions">
+      <i class="icon fas fa-route"></i>
+      <span class="label">Routes</span>
+    </div>
+    <div class="car orange" data-description="Handles requests and responses">
+      <i class="icon fas fa-gamepad"></i>
+      <span class="label">Controllers</span>
+    </div>
+    <div class="car red" data-description="Renders HTML templates and UI">
+      <i class="icon fas fa-palette"></i>
+      <span class="label">Views</span>
+    </div>
+    <div class="car engine" data-description="The core framework that powers everything">
+      <i class="icon fas fa-train"></i>
+      <span class="label">Rails</span>
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <label>
+      Speed
+      <input type="range" id="speed" min="10" max="100" value="15" step="5">
+      <span id="speed-display">15s</span>
+    </label>
+    <p class="hint">Hover over train to pause</p>
+  </div>
+</div>
+
+<script>
+const train = document.querySelector('.train');
+const speedSlider = document.getElementById('speed');
+const speedDisplay = document.getElementById('speed-display');
+
+speedSlider.addEventListener('input', (e) => {
+  const speed = e.target.value;
+  speedDisplay.textContent = speed + 's';
+  train.style.animationDuration = speed + 's';
+});
+</script>

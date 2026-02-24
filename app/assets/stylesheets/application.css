@@ -1,0 +1,296 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #fff;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20vh;
+  z-index: 2;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.track {
+  position: absolute;
+  bottom: 40%;
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 30px,
+    rgba(255,255,255,0.2) 30px,
+    rgba(255,255,255,0.2) 32px
+  );
+  top: -3px;
+}
+
+.train {
+  position: absolute;
+  bottom: 40%;
+  left: -100%;
+  display: flex;
+  gap: 8px;
+  animation: move 15s linear infinite;
+  z-index: 10;
+}
+
+.train:hover {
+  animation-play-state: paused;
+}
+
+@keyframes move {
+  to {
+    left: 100%;
+  }
+}
+
+.car {
+  width: 120px;
+  height: 90px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  position: relative;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.car:hover {
+  transform: translateY(-8px);
+}
+
+.car:hover::before {
+  content: attr(data-description);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.car::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 20%;
+  right: 20%;
+  height: 8px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: 
+    -15px 0 0 #1a1a1a,
+    15px 0 0 #1a1a1a;
+}
+
+.car .icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  color: white;
+}
+
+.car .label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.engine {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  width: 140px;
+  height: 100px;
+}
+
+.engine::before {
+  content: '\f0c2';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+  animation: smoke 2s infinite;
+}
+
+@keyframes smoke {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.6; transform: translateX(-50%) translateY(-5px); }
+}
+
+.blue {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.purple {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.teal {
+  background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+}
+
+.orange {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.red {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.control-panel {
+  position: fixed;
+  bottom: 40px;
+  background: rgba(255,255,255,0.95);
+  color: #333;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.control-panel label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+#speed {
+  width: 200px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+#speed-display {
+  min-width: 50px;
+  text-align: center;
+  font-weight: 700;
+  color: #667eea;
+  font-size: 1.1rem;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+  margin: 0;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+  
+  .car {
+    width: 80px;
+    height: 70px;
+  }
+  
+  .engine {
+    width: 90px;
+    height: 75px;
+  }
+  
+  .car .icon {
+    font-size: 1.8rem;
+  }
+  
+  .car .label {
+    font-size: 0.7rem;
+  }
+  
+  .control-panel {
+    padding: 16px 20px;
+  }
+  
+  #speed {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .car {
+    width: 60px;
+    height: 55px;
+    gap: 4px;
+  }
+  
+  .engine {
+    width: 70px;
+    height: 60px;
+  }
+  
+  .car .icon {
+    font-size: 1.5rem;
+  }
+  
+  .car .label {
+    font-size: 0.6rem;
+  }
+}
+
